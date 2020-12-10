@@ -1,13 +1,22 @@
 "use strict";
 
-const numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?', '');
+let numberOfFilms;
+
+function start() {
+    numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
+
+    while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms) ||numberOfFilms.length >50) {
+        numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');       
+    }  
+}  
+start();
 
 let personalMovieDB =  {
-    count: numberOfFilms,
+    count: numberOfFilms, 
     movies: {},
     actor: {},
     genres: [],
-    privat: false,
+    privat: true,
 };
 
 // const a = prompt('Один из последних просмотренных фильмов', ''),
@@ -19,20 +28,36 @@ let personalMovieDB =  {
 // personalMovieDB.movies[a] = b;
 // personalMovieDB.movies[c] = d;
 
+function rememberMyFilms() {
+    for (let i = 0; i < 2; i++) {
+        const a = prompt('Один из последних просмотренных фильмов', ''),
+              b = prompt('На сколько оцените его?', '');
+    
+        if (a != null && b != null && a != '' && b != '' && a.length < 50) {
+            personalMovieDB.movies[a] = b;
+            console.log('Done!');
+        } else {
+            console.log('Eror!');
+            i--;
+        }
+    }    
+}
+
+rememberMyFilms();
 
                 // for
-for (let i = 0; i < 2; i++) {
-    const a = prompt('Один из последних просмотренных фильмов', ''),
-          b = prompt('На сколько оцените его?', '');
+// for (let i = 0; i < 2; i++) {
+//     const a = prompt('Один из последних просмотренных фильмов', ''),
+//           b = prompt('На сколько оцените его?', '');
 
-    if (a != null && b != null && a != '' && b != '' && a.length < 50) {
-        personalMovieDB.movies[a] = b;
-        console.log('Done!');
-    } else {
-        console.log('Eror!');
-        i--;
-    }
-}
+//     if (a != null && b != null && a != '' && b != '' && a.length < 50) {
+//         personalMovieDB.movies[a] = b;
+//         console.log('Done!');
+//     } else {
+//         console.log('Eror!');
+//         i--;
+//     }
+// }
 
                 // do...while
 // do {
@@ -48,7 +73,7 @@ for (let i = 0; i < 2; i++) {
 // } while (Object.keys(personalMovieDB.movies).length < 2);
 
 
-                // do
+                // while
 // let cycle = 0;
 
 // while (cycle < 2) {
@@ -66,7 +91,9 @@ for (let i = 0; i < 2; i++) {
 // }
 
 
-if (personalMovieDB.count < 10) {
+
+function detectPersonalLevel() {
+    if (personalMovieDB.count < 10) {
         console.log('Просмотрено довольно мало фильмов');
     } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
         console.log('Вы классический зритель');
@@ -74,6 +101,25 @@ if (personalMovieDB.count < 10) {
         console.log('Вы киноман');
     } else {
         console.log('Произошла ошибка');
+    }
 }
+detectPersonalLevel();
 
-console.log(personalMovieDB);
+
+/* Создать функцию showMyDB, которая будет проверять свойство privat. Если стоит в позиции false - выводит в консоль главные обьект програмы */
+
+function showMyDB() {
+    if (personalMovieDB.privat == false) {
+        console.log(personalMovieDB);
+    }
+}
+showMyDB();
+
+
+// function showMyDB(hidden) {
+//     if (!hidden) {
+//         console.log(personalMovieDB);
+//     }
+// }
+// showMyDB(personalMovieDB.privat);
+
