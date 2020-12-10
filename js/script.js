@@ -16,7 +16,7 @@ let personalMovieDB =  {
     movies: {},
     actor: {},
     genres: [],
-    privat: true,
+    privat: false,
 };
 
 // const a = prompt('Один из последних просмотренных фильмов', ''),
@@ -106,7 +106,8 @@ function detectPersonalLevel() {
 detectPersonalLevel();
 
 
-/* Создать функцию showMyDB, которая будет проверять свойство privat. Если стоит в позиции false - выводит в консоль главные обьект програмы */
+//  Создать функцию showMyDB, которая будет проверять свойство privat. Если стоит в позиции 
+// false - выводит в консоль главные обьект программы 
 
 function showMyDB() {
     if (personalMovieDB.privat == false) {
